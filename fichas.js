@@ -1,37 +1,20 @@
-peon = {
-pasos : 1,
-direccion : 'directo',
-imagen : "/img/peon_"
-}
+class ficha{
 
-rey = {
-    pasos : 1,
-    direccion : 'all',
-    imagen : "/img/rey_"
-}
+    color;
+    tipo;
+    imagen;
+    activa;
+    position;
 
-reina = {
-    pasos : 1,
-    direccion : 'all',
-    imagen : "/img/reina_"
-}
+    constructor(col,tip,img,act,pos){
 
-alfil = {
-    pasos : 'all',
-    direccion : 'diagonal',
-    imagen : "/img/alfil_"
-}
-
-caballo = {
-    pasos : 'L',
-    direccion : 'L',
-    imagen : "/img/caballo_"
-}
-
-torre = {
-    pasos : 'all',
-    direccion : 'directo',
-    imagen : "/img/torre_"
+        this.color = col
+        this.tipo = tip
+        this.imagen = img
+        this.activa = act
+        this.position = pos
+        
+    }
 }
 
 
