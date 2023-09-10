@@ -24,9 +24,115 @@ function createam(x){
 
 
 function startpos(eq){
+
+    let dicc_img = {}
+
     Object.entries(eq).forEach(([key,value])=>{
+        //chest[value.position].innerHTML += `<img id="${key}_${value.color}" src="${value.imagen}" alt="" srcset="">`
+        let imag = document.createElement("img")
+        imag.src = value.imagen
+        imag.id = key+'_'+value.color
+        chest[value.position].append(imag)
 
-        chest[value.position].innerHTML += `<img src="${value.imagen}" alt="" srcset="">`
+        dicc_img[`${key}_${value.color}`] = imag
 
+        
     })
+    return dicc_img
+}
+
+
+function actionAssign(dicc_eq,eq){
+
+    Object.entries(dicc_eq).forEach(([key,value])=>{
+            
+
+        value.addEventListener("click",()=>{
+
+            //console.log(eq[key.slice(0,-2)].tipo)
+
+            let mov;
+            let pieza = eq[key.slice(0,-2)]
+
+            switch(pieza.tipo){
+
+                case 't':
+                    castillo(pieza)
+                    break;
+
+                case 'c':
+                    caballo(pieza)
+                    break;
+
+                case 'a':
+                    alfil(pieza)
+                    break;
+                
+                case 'q':
+                    reina(pieza)
+                    break;
+
+                case 'r':
+                    rey(pieza)
+                    break;
+
+                case 'p':
+                    peon(pieza)
+                    break;
+
+                default:
+                    console.log("No implementado")
+
+            }
+
+
+        })
+
+
+            
+    })
+
+    
+}
+
+
+function castillo(pieza){
+
+    console.log("esta atacando un castillo")
+
+}
+
+function caballo(pieza){
+
+    console.log("esta atacando un caballo")
+
+}
+
+function alfil(pieza){
+
+    console.log("esta atacando un alfil")
+
+}
+
+function reina(pieza){
+
+    console.log("esta atacando una reina")
+
+}
+
+function rey(pieza){
+
+    console.log("esta atacando un rey")
+
+}
+
+function peon(pieza){
+
+    console.log("esta atacando un peon")
+    let pos = pieza.position
+    let mov = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+pos[1] : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1];
+    console.log(mov)
+    
+    chest[mov].style.backgroundColor = "RGBA(200,250, 0, 0.6)"
+    pieza_atacante = pieza
 }
