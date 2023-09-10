@@ -4,9 +4,9 @@ function createam(x){
 
         'torre1':new ficha(x,'t',`/img/torre_${x}.png`,true,`${x == 'b'? 'a8' : 'h8'}`),
         'caballo1':new ficha(x,'c',`/img/caballo_${x}.png`,true,`${x == 'b'? 'a7' : 'h7'}`),
-        'alfil1':new ficha(x,'a',`/img/alfil_${x}.png`,true,`${x == 'b'? 'a6' : 'h6'}`),
-        'rey':new ficha(x,'r',`/img/rey_${x}.png`,true,`${x == 'b'? 'a5' : 'h5'}`),
-        'reina':new ficha(x,'q',`/img/reina_${x}.png`,true,`${x == 'b'? 'a4' : 'h4'}`),
+        'alfil1':new ficha(x,'a',`/img/alfil_${x}.png`,true,`${x == 'b'? 'a6' : 'c6'}`),
+        'rey':new ficha(x,'r',`/img/rey_${x}.png`,true,`${x == 'b'? 'a5' : 'c5'}`),
+        'reina':new ficha(x,'q',`/img/reina_${x}.png`,true,`${x == 'b'? 'a4' : 'c4'}`),
         'alfil2':new ficha(x,'a',`/img/alfil_${x}.png`,true,`${x == 'b'? 'a3' : 'h3'}`),
         'caballo2':new ficha(x,'c',`/img/caballo_${x}.png`,true,`${x == 'b'? 'a2' : 'h2'}`),
         'torre2':new ficha(x,'t',`/img/torre_${x}.png`,true,`${x == 'b'? 'a1' : 'h1'}`)
@@ -39,6 +39,13 @@ function startpos(eq){
         
     })
     return dicc_img
+}
+
+
+function pintar_amarillo(cas){
+
+    chest[cas].style.backgroundColor = "RGBA(200,250, 0, 0.4)"
+
 }
 
 
@@ -76,7 +83,8 @@ function actionAssign(dicc_eq,eq){
                     rey(pieza)
                     break;
 
-                case 'p':
+                case 'p'
+                :
                     peon(pieza)
                     break;
 
@@ -129,10 +137,42 @@ function rey(pieza){
 function peon(pieza){
 
     console.log("esta atacando un peon")
+    let at1, at2
     let pos = pieza.position
-    let mov = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+pos[1] : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1];
-    console.log(mov)
-    
-    chest[mov].style.backgroundColor = "RGBA(200,250, 0, 0.6)"
+    let list_mov = []
+    at1 = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+(parseInt(pos[1])+1) : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1]
+    at2 = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+(parseInt(pos[1])-1) : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1]
+    mov = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+pos[1] : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1]
     pieza_atacante = pieza
+
+    if(!chest[mov].hasChildNodes()){
+        pintar_amarillo(mov)
+    }
+
+    if(parseInt(at1[1])<=8){
+        if(chest[at1].hasChildNodes()){
+            pintar_amarillo(at1)
+        }
+    }
+
+    if(parseInt(at2[1])>=1){
+        if(chest[at2].hasChildNodes()){
+            pintar_amarillo(at2)
+        }
+    }
+}
+
+function move(){
+    
+    Object.entries(chest).forEach(([key,value])=>{
+
+        value.addEventListener('click', ()=>{
+
+            if(value.style.backgroundColor === 'rgba(200, 250, 0, 0.4)'){
+
+                console.log('ficha se movio aqui')
+
+            }
+        })
+    })
 }

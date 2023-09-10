@@ -22,6 +22,7 @@ for(j=1;j<=8;j++){
         casilla.style.backgroundColor = color == false? "white" : "RGBA(0, 0, 0, 0.6)"
         //chest[String.fromCharCode(i)+j] = document.getElementById(String.fromCharCode(i)+j)
         chest[String.fromCharCode(i)+j] = casilla
+
         if(i!=104){color = !color}
         
     }
@@ -31,10 +32,11 @@ for(j=1;j<=8;j++){
 
 let tablec = document.getElementById("tablero")
 tablec.append(tablero)
-
 //Creacion equipos
 eq_w = createam('b')
 eq_b = createam('n')
+
+move()
 
 //diccionarios con las imagenes
 dicc_img_w = startpos(eq_w)
