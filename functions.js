@@ -2,14 +2,14 @@ function createam(x){
 
     eq={
 
-        'torre1':new ficha(x,'t',`/img/torre_${x}.png`,true,`${x == 'b'? 'a8' : 'h8'}`),
-        'caballo1':new ficha(x,'c',`/img/caballo_${x}.png`,true,`${x == 'b'? 'a7' : 'h7'}`),
-        'alfil1':new ficha(x,'a',`/img/alfil_${x}.png`,true,`${x == 'b'? 'a6' : 'c6'}`),
-        'rey':new ficha(x,'r',`/img/rey_${x}.png`,true,`${x == 'b'? 'a5' : 'c5'}`),
-        'reina':new ficha(x,'q',`/img/reina_${x}.png`,true,`${x == 'b'? 'a4' : 'c4'}`),
-        'alfil2':new ficha(x,'a',`/img/alfil_${x}.png`,true,`${x == 'b'? 'a3' : 'h3'}`),
-        'caballo2':new ficha(x,'c',`/img/caballo_${x}.png`,true,`${x == 'b'? 'a2' : 'h2'}`),
-        'torre2':new ficha(x,'t',`/img/torre_${x}.png`,true,`${x == 'b'? 'a1' : 'h1'}`)
+        'torre1':new ficha(x,'t',`/img/torre_${x}.png`,true,`${x == 'b'? 'a8' : 'h8'}`,'torre1'),
+        'caballo1':new ficha(x,'c',`/img/caballo_${x}.png`,true,`${x == 'b'? 'a7' : 'h7'}`,'caballo1'),
+        'alfil1':new ficha(x,'a',`/img/alfil_${x}.png`,true,`${x == 'b'? 'a6' : 'c6'}`,'alfil1'),
+        'rey':new ficha(x,'r',`/img/rey_${x}.png`,true,`${x == 'b'? 'a5' : 'c5'}`,'rey'),
+        'reina':new ficha(x,'q',`/img/reina_${x}.png`,true,`${x == 'b'? 'a4' : 'c4'}`,'reina'),
+        'alfil2':new ficha(x,'a',`/img/alfil_${x}.png`,true,`${x == 'b'? 'a3' : 'h3'}`,'alfil2'),
+        'caballo2':new ficha(x,'c',`/img/caballo_${x}.png`,true,`${x == 'b'? 'a2' : 'h2'}`,'caballo2'),
+        'torre2':new ficha(x,'t',`/img/torre_${x}.png`,true,`${x == 'b'? 'a1' : 'h1'}`,'torre2')
 
     }
 
@@ -55,7 +55,6 @@ function actionAssign(dicc_eq,eq){
             
 
         value.addEventListener("click",()=>{
-
             //console.log(eq[key.slice(0,-2)].tipo)
 
             let mov;
@@ -162,7 +161,7 @@ function peon(pieza){
     }
 }
 
-function move(){
+function move(dicc_img_w,dicc_img_b){
     
     Object.entries(chest).forEach(([key,value])=>{
 
@@ -171,7 +170,14 @@ function move(){
             if(value.style.backgroundColor === 'rgba(200, 250, 0, 0.4)'){
 
                 console.log('ficha se movio aqui')
-
+                //pieza_atacante.color == 'b'? delete dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : delete dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color]
+                chest[pieza_atacante.position].removeChild(chest[pieza_atacante.position].firstChild)
+                let img_actual = pieza_atacante.color == 'b'? dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color]
+                /* let imag = document.createElement("img")
+                imag.src = pieza_atacante.imagen
+                imag.id = pieza_atacante.nombre+'_'+pieza_atacante.color */
+                chest[key].append(img_actual)
+                
             }
         })
     })
