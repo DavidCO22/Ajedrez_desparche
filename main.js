@@ -32,15 +32,24 @@ for(j=1;j<=8;j++){
 
 let tablec = document.getElementById("tablero")
 tablec.append(tablero)
+
 //Creacion equipos
 eq_w = createam('b')
 eq_b = createam('n')
 
-move()
-
 //diccionarios con las imagenes
 dicc_img_w = startpos(eq_w)
 dicc_img_b = startpos(eq_b)
+
+move(dicc_img_w,dicc_img_b)
+
+console.log(dicc_img_w)
+
+//asignacion de eventos
+actionAssign(dicc_img_w,eq_w)
+actionAssign(dicc_img_b,eq_b)
+
+
 
 //asignacion de eventos
 actionAssign(dicc_img_w,eq_w)
