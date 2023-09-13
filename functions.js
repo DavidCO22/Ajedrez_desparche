@@ -15,7 +15,7 @@ function createam(x){
 
     for(i=1;i<=8;i++){
 
-        eq['peon'+i] = new ficha(x,'p',`/img/peon_${x}.png`,true,`${x == 'b'? 'b'+i : 'g'+i}`)
+        eq['peon'+i] = new ficha(x,'p',`/img/peon_${x}.png`,true,`${x == 'b'? 'b'+i : 'g'+i}`,'peon'+i)
 
     }
 
@@ -48,6 +48,17 @@ function pintar_amarillo(cas){
 
 }
 
+function recolorear(){
+    let color = true;
+    let count = 0;
+    Object.entries(chest).forEach(([key,value])=>{
+        count++
+        value.style.backgroundColor = color == false? "white" : "RGBA(0, 0, 0, 0.6)"
+        if(count%8!=0){color = !color}
+
+    })
+
+}
 
 function actionAssign(dicc_eq,eq){
 
@@ -161,7 +172,7 @@ function peon(pieza){
     }
 }
 
-function move(dicc_img_w,dicc_img_b){
+/* function move(dicc_img_w,dicc_img_b,eq_w,eq_b){
     
     Object.entries(chest).forEach(([key,value])=>{
 
@@ -171,14 +182,30 @@ function move(dicc_img_w,dicc_img_b){
 
                 console.log('ficha se movio aqui')
                 //pieza_atacante.color == 'b'? delete dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : delete dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color]
-                chest[pieza_atacante.position].removeChild(chest[pieza_atacante.position].firstChild)
-                let img_actual = pieza_atacante.color == 'b'? dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color]
+                console.log(value)
+                value.append(pieza_atacante.color == 'b'? dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color])
+                //chest[pieza_atacante.position].removeChild(chest[pieza_atacante.position].firstChild)
+                console.log(dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color])
+                value.style.backgroundColor = 'rgba(200, 250, 0, 0.4)'
+                recolorear()
+
+                if(pieza_atacante.color=='b'){
+
+                    eq_w[pieza_atacante].position = key
+                    return 'b'
+                }
+                else{
+
+                    eq_b[pieza_atacante].position = key
+                    return 'n'
+                }
+                /* let img_actual = pieza_atacante.color == 'b'? dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color] */
                 /* let imag = document.createElement("img")
                 imag.src = pieza_atacante.imagen
                 imag.id = pieza_atacante.nombre+'_'+pieza_atacante.color */
-                chest[key].append(img_actual)
+                //chest[key].append(img_actual)
                 
-            }
-        })
-    })
-}
+  //          }
+    //    })
+    //}) */
+//}
