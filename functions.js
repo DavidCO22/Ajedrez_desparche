@@ -150,8 +150,8 @@ function peon(pieza){
     let at1, at2
     let pos = pieza.position
     let list_mov = []
-    at1 = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+(parseInt(pos[1])+1) : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1]
-    at2 = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+(parseInt(pos[1])-1) : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1]
+    at1 = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+(parseInt(pos[1])+1) : String.fromCharCode(pos[0].codePointAt(0)-1)+(parseInt(pos[1])+1)
+    at2 = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+(parseInt(pos[1])-1) : String.fromCharCode(pos[0].codePointAt(0)-1)+(parseInt(pos[1])-1)
     mov = pieza.color == 'b'? String.fromCharCode(pos[0].codePointAt(0)+1)+pos[1] : String.fromCharCode(pos[0].codePointAt(0)-1)+pos[1]
     pieza_atacante = pieza
 
@@ -160,13 +160,14 @@ function peon(pieza){
     }
 
     if(parseInt(at1[1])<=8){
-        if(chest[at1].hasChildNodes()){
+        if(chest[at1].hasChildNodes() && chest[at1].firstChild.id.slice(-1)!=pieza_atacante.color){
             pintar_amarillo(at1)
+            console.log(chest[at1].firstChild.id.slice(-1))
         }
     }
 
     if(parseInt(at2[1])>=1){
-        if(chest[at2].hasChildNodes()){
+        if(chest[at2].hasChildNodes() && chest[at2].firstChild.id.slice(-1)!=pieza_atacante.color){
             pintar_amarillo(at2)
         }
     }
@@ -209,3 +210,4 @@ function peon(pieza){
     //    })
     //}) */
 //}
+
