@@ -70,7 +70,7 @@ function actionAssign(dicc_eq,eq){
 
             let mov;
             let pieza = eq[key.slice(0,-2)]
-
+            recolorear()
             switch(pieza.tipo){
 
                 case 't':
@@ -173,41 +173,4 @@ function peon(pieza){
     }
 }
 
-/* function move(dicc_img_w,dicc_img_b,eq_w,eq_b){
-    
-    Object.entries(chest).forEach(([key,value])=>{
-
-        value.addEventListener('click', ()=>{
-
-            if(value.style.backgroundColor === 'rgba(200, 250, 0, 0.4)'){
-
-                console.log('ficha se movio aqui')
-                //pieza_atacante.color == 'b'? delete dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : delete dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color]
-                console.log(value)
-                value.append(pieza_atacante.color == 'b'? dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color])
-                //chest[pieza_atacante.position].removeChild(chest[pieza_atacante.position].firstChild)
-                console.log(dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color])
-                value.style.backgroundColor = 'rgba(200, 250, 0, 0.4)'
-                recolorear()
-
-                if(pieza_atacante.color=='b'){
-
-                    eq_w[pieza_atacante].position = key
-                    return 'b'
-                }
-                else{
-
-                    eq_b[pieza_atacante].position = key
-                    return 'n'
-                }
-                /* let img_actual = pieza_atacante.color == 'b'? dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color] */
-                /* let imag = document.createElement("img")
-                imag.src = pieza_atacante.imagen
-                imag.id = pieza_atacante.nombre+'_'+pieza_atacante.color */
-                //chest[key].append(img_actual)
-                
-  //          }
-    //    })
-    //}) */
-//}
 
