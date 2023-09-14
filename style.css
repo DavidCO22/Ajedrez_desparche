@@ -1,4 +1,4 @@
-table{
+#tablero table{
 
     border: 2px solid black;
     border-collapse: collapse;
@@ -16,9 +16,23 @@ margin-left: 20%;
 }
 
 
-td{
+#tablero td{
     align-items: center;
     height: 40px;
     width: 40px;
     border: 1px solid black;
+}
+
+#fuera{
+
+    margin-top: 40px;
+    border-collapse: collapse;
+}
+
+#fuera td{
+
+    align-items: center;
+    height: 40px;
+    width: 40px;
+
 }
