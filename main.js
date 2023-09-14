@@ -30,9 +30,17 @@ for(j=1;j<=8;j++){
 }
 
 /*************************************************************************************************************************************/
-
+let fuera = document.getElementById("fuera")
 let tablec = document.getElementById("tablero")
 tablec.append(tablero)
+
+let cementerio = document.createElement("table")
+let cem_w = document.createElement("tr")
+let cem_b = document.createElement("tr")
+cem_b.id = "cem_b"
+cem_w.id = "cem_w"
+cementerio.append(cem_w,cem_b)
+fuera.append(cementerio)
 
 //Creacion equipos
 eq_w = createam('b')
@@ -55,6 +63,25 @@ Object.entries(chest).forEach(([key,value])=>{
             console.log('ficha se movio aqui')
             //pieza_atacante.color == 'b'? delete dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : delete dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color]
             console.log(value)
+            if(value.hasChildNodes()){
+
+                if(pieza_atacante.color == 'b'){
+                    
+                    let fmuerta = document.createElement("td")
+                    fmuerta.append(dicc_img_b[value.firstChild.id]);console.log("aqui")
+                    cem_b.append(fmuerta)
+                
+                }
+
+                else{
+
+                    let fmuerta = document.createElement("td")
+                    fmuerta.append(dicc_img_w[value.firstChild.id]);console.log("no aqui")
+                    cem_w.append(fmuerta)
+                
+                }
+
+            }
             value.append(pieza_atacante.color == 'b'? dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color] : dicc_img_b[pieza_atacante.nombre+'_'+pieza_atacante.color])
             //chest[pieza_atacante.position].removeChild(chest[pieza_atacante.position].firstChild)
             console.log(dicc_img_w[pieza_atacante.nombre+'_'+pieza_atacante.color])
